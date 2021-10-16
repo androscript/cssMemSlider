@@ -22,15 +22,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #1c1c1c;
+  background-color: #000000;
 }
 
 .slider-wrapper {
-  width: 90%;
-  height: 90%;
+  max-width: 90%;
+  max-height: 90%;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #1c1c1c;
 }
 
 input {
@@ -38,62 +40,57 @@ input {
 }
 
 .slider-top {
-  width: 40%;
   height: 90%;
-  display: flex;
-  /*display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr;*/
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  border-radius: 1rem;
 }
 
 .mem {
   width: 100%;
   height: 100%;
-}
-
-.mem-1 {
-  background: url("./assets/m1.jpg") no-repeat center;
-  background-size: contain;
+  object-fit: contain;
   display: none;
-  order: 1;
 }
 
-.mem-2 {
-  background: url("./assets/m2.jpg") no-repeat center;
-  background-size: contain;
-  display: none;
-  order: 1;
+.mem img {
+  width: 100%;
+  height: 100%;
 }
-
-.mem-3 {
-  background: url("./assets/m3.jpg") no-repeat center;
-  background-size: contain;
-  display: none;
-  order: 1;
-}
-
-.mem-4 {
-  background: url("./assets/m4.jpg") no-repeat center;
-  background-size: contain;
-  display: none;
-  order: 1;
-}
-
 
 .slider-bottom {
-  width: 90%;
+  width: 100%;
   height: 10%;
+  margin-bottom: 10%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .slider-text {
+  padding-right: 5%;
+  margin-top: 5%;
   color: #ffffff;
 }
 
+p {
+  display: none;
+}
+
+#mem-1:checked ~ .slider-bottom .slider-text p:nth-of-type(1),
+#mem-2:checked ~ .slider-bottom .slider-text p:nth-of-type(2),
+#mem-3:checked ~ .slider-bottom .slider-text p:nth-of-type(3),
+#mem-4:checked ~ .slider-bottom .slider-text p:nth-of-type(4) {
+  display: block;
+  animation-name: right;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
 .slider-controls {
-  width: 7vw;
+  min-width: 7vw;
+  margin-top: 5%;
   display: flex;
   justify-content: space-between;
 }
@@ -121,16 +118,10 @@ input {
 #mem-3:checked ~ .slider-top div:nth-of-type(3),
 #mem-4:checked ~ .slider-top div:nth-of-type(4) {
   display: flex;
-  order: 0;
+  animation-name: right;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
-/*
-#mem-1:checked ~ .slider-top div:nth-of-type(1),
-#mem-2:checked ~ .slider-top div:nth-of-type(2),
-#mem-3:checked ~ .slider-top div:nth-of-type(3),
-#mem-4:checked ~ .slider-top div:nth-of-type(4) {
-  animation: 3s ease-in 1s infinite reverse both running slidein;
-}*/
-
 
 .slider-controls label:hover > span {
   background-color: #686868;
@@ -149,50 +140,14 @@ input {
   border-color: #aaaaaa;
 }
 
-
-
-
-.to-left {
-  animation-name: left;
-}
-
-.from-right {
-  animation-name: right;
-}
-
-.to-right {
-  animation-name: right;
-  animation-direction: reverse;
-}
-
-.from-left {
-  animation-name: left;
-  animation-direction: reverse;
-}
-
-@keyframes left {
-  from {
-    left: 0;
-  }
-  to {
-    left: -100%;
-  }
-}
-
 @keyframes right {
   from {
-    left: 100%;
+    transform: translateX(100%);
   }
   to {
-    left: 0;
+    transform: translateX(0);
   }
 }
-
-
-
-
-
-
 
 @media screen and (max-width: 480px) {
 
